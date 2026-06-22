@@ -1,6 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JXCHQWPYME"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-JXCHQWPYME");
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f6f7f4">
@@ -68,6 +76,14 @@
               aria-hidden="true"
             >
             <input id="submission-id" name="submissionId" type="hidden">
+            <input id="visitor-id" name="visitorId" type="hidden">
+            <input id="session-id" name="sessionId" type="hidden">
+            <input id="timezone" name="timezone" type="hidden">
+            <input id="referrer" name="referrer" type="hidden">
+            <input id="landing-page" name="landingPage" type="hidden">
+            <input id="utm-source" name="utmSource" type="hidden">
+            <input id="utm-medium" name="utmMedium" type="hidden">
+            <input id="utm-campaign" name="utmCampaign" type="hidden">
 
             <p id="form-status" class="form-status" role="status" aria-live="polite">
               No spam. Unsubscribe at any time.

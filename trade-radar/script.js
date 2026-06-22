@@ -6,10 +6,55 @@ const email = document.querySelector("#email");
 const status = document.querySelector("#form-status");
 const button = form.querySelector("button");
 const submissionId = document.querySelector("#submission-id");
+const visitorIdInput = document.querySelector("#visitor-id");
+const sessionIdInput = document.querySelector("#session-id");
+const timezoneInput = document.querySelector("#timezone");
+const referrerInput = document.querySelector("#referrer");
+const landingPageInput = document.querySelector("#landing-page");
+const utmSourceInput = document.querySelector("#utm-source");
+const utmMediumInput = document.querySelector("#utm-medium");
+const utmCampaignInput = document.querySelector("#utm-campaign");
 
 const defaultMessage = "No spam. Unsubscribe at any time.";
 let pendingId = null;
 let timeoutId = null;
+let formStarted = false;
+
+function createId() {
+  return crypto.randomUUID();
+}
+
+function getOrCreateStoredId(storage, key) {
+  try {
+    const existingId = storage.getItem(key);
+
+    if (/^[0-9a-f-]{36}$/i.test(existingId || "")) {
+      return existingId;
+    }
+
+    const id = createId();
+    storage.setItem(key, id);
+    return id;
+  } catch (error) {
+    return createId();
+  }
+}
+
+function track(eventName, parameters = {}) {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", eventName, parameters);
+  }
+}
+
+const pageUrl = new URL(window.location.href);
+visitorIdInput.value = getOrCreateStoredId(localStorage, "tradeRadarVisitorId");
+sessionIdInput.value = getOrCreateStoredId(sessionStorage, "tradeRadarSessionId");
+timezoneInput.value = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+referrerInput.value = document.referrer;
+landingPageInput.value = pageUrl.href;
+utmSourceInput.value = pageUrl.searchParams.get("utm_source") || "";
+utmMediumInput.value = pageUrl.searchParams.get("utm_medium") || "";
+utmCampaignInput.value = pageUrl.searchParams.get("utm_campaign") || "";
 
 function setStatus(message, type = "") {
   status.textContent = message;
@@ -21,11 +66,19 @@ function setPending(isPending) {
   email.readOnly = isPending;
 }
 
+email.addEventListener("focus", () => {
+  if (!formStarted) {
+    formStarted = true;
+    track("signup_form_start");
+  }
+});
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   setStatus(defaultMessage);
 
   if (!email.validity.valid) {
+    track("signup_validation_error");
     email.focus();
     setStatus("Enter a valid email address.", "error");
     return;
@@ -41,6 +94,7 @@ form.addEventListener("submit", (event) => {
   form.action = ENDPOINT_URL;
   setPending(true);
   setStatus("Joining…");
+  track("signup_submit");
   form.submit();
 
   timeoutId = window.setTimeout(() => {
@@ -62,12 +116,15 @@ window.addEventListener("message", (event) => {
   setPending(false);
 
   if (data.status === "ok") {
-    form.reset();
+    email.value = "";
     setStatus("You’re on the list. We’ll be in touch.", "success");
+    track("signup_success");
   } else if (data.status === "invalid") {
     email.focus();
     setStatus("Enter a valid email address.", "error");
+    track("signup_validation_error");
   } else {
     setStatus("Something went wrong. Please try again.", "error");
+    track("signup_error");
   }
 });
