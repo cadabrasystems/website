@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7f4">
+    <meta
+      name="description"
+      content="Trade Radar helps businesses source suppliers and access a secure, efficient LC alternative."
+    >
+    <title>Trade Radar</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <a class="brand" href="#" aria-label="Trade Radar home">
+          <span>Trade Radar</span>
+        </a>
+        <span class="availability">Coming soon</span>
+      </header>
+
+      <main class="hero">
+        <section class="content" aria-labelledby="hero-title">
+          <p class="kicker">The future of global trade</p>
+          <h1 id="hero-title">Trade Radar</h1>
+          <p class="description">
+            Source your own suppliers with a free system. Enjoy a novel efficient
+            LC alternative with a quick setup and unprecedented security.
+          </p>
+
+          <form id="signup-form" class="signup-form" method="post" target="submission-frame" novalidate>
+            <label for="email">Be the first to know when we launch.</label>
+            <div class="form-control">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                placeholder="Enter your email address"
+                maxlength="254"
+                aria-describedby="form-status"
+                required
+              >
+              <button type="submit">
+                <span>Notify me</span>
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="M4 10h11M11 6l4 4-4 4"></path>
+                </svg>
+              </button>
+            </div>
+
+            <input
+              class="honeypot"
+              name="website"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            >
+            <input id="submission-id" name="submissionId" type="hidden">
+
+            <p id="form-status" class="form-status" role="status" aria-live="polite">
+              No spam. Unsubscribe at any time.
+            </p>
+          </form>
+
+          <iframe name="submission-frame" title="Mailing-list submission" hidden></iframe>
+        </section>
+
+      </main>
+
+      <footer class="footer">
+        <span>© 2026 Trade Radar</span>
+        <span>Global trade, made simpler.</span>
+      </footer>
+    </div>
+  </body>
+</html>

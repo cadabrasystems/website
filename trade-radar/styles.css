@@ -1,0 +1,348 @@
+:root {
+  color-scheme: light;
+  --navy: #071d32;
+  --navy-deep: #041525;
+  --navy-light: #173b5c;
+  --blue: #1261a6;
+  --blue-dark: #0b4d86;
+  --ink: #142b3d;
+  --muted: #536775;
+  --line: #d7dee3;
+  --surface: #f4f6f7;
+  --white: #ffffff;
+  font-family: "Manrope", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--white);
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.header,
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  padding-inline: clamp(24px, 5.5vw, 88px);
+}
+
+.header {
+  min-height: 88px;
+  background: var(--white);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  color: var(--navy);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.availability {
+  color: #657581;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 158px);
+  min-height: calc(100svh - 158px);
+  padding: clamp(76px, 10vh, 128px) max(clamp(24px, 5.5vw, 88px), calc((100vw - 1440px) / 2 + 88px));
+  color: var(--white);
+  background:
+    radial-gradient(circle at 91% 8%, #173c5a 0, #0d2a43 20%, transparent 48%),
+    linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+}
+
+.content {
+  width: min(820px, 100%);
+}
+
+.kicker {
+  margin: 0 0 23px;
+  color: #92b9d6;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: var(--white);
+  font-size: clamp(4rem, 7.5vw, 7.8rem);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.96;
+}
+
+.description {
+  max-width: 730px;
+  margin: 35px 0 42px;
+  color: #c1ced7;
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  line-height: 1.75;
+}
+
+.signup-form {
+  max-width: 650px;
+}
+
+.signup-form > label {
+  display: block;
+  margin-bottom: 12px;
+  color: #edf3f7;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.form-control {
+  display: flex;
+  min-height: 60px;
+  padding: 5px;
+  border: 1px solid rgb(255 255 255 / 48%);
+  border-radius: 2px;
+  background: var(--white);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.form-control:focus-within {
+  border-color: #8ec4e9;
+  box-shadow: 0 0 0 3px rgb(142 196 233 / 22%);
+}
+
+input[type="email"] {
+  min-width: 0;
+  flex: 1;
+  padding: 0 17px;
+  border: 0;
+  outline: 0;
+  color: var(--ink);
+  background: transparent;
+  font: 400 0.9rem/1.4 inherit;
+}
+
+input[type="email"]::placeholder {
+  color: #71818c;
+  opacity: 1;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  min-width: 132px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 1px;
+  color: var(--white);
+  background: var(--blue);
+  font: 600 0.8rem/1 inherit;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+button:hover {
+  background: var(--blue-dark);
+}
+
+button:focus-visible {
+  outline: 3px solid rgb(142 196 233 / 42%);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.62;
+  cursor: wait;
+}
+
+button svg {
+  width: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.form-status {
+  min-height: 1.4em;
+  margin: 11px 1px 0;
+  color: #91a4b2;
+  font-size: 0.69rem;
+}
+
+.form-status.error {
+  color: #ffb4ad;
+}
+
+.form-status.success {
+  color: #a9d9bc;
+  font-weight: 600;
+}
+
+.honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.footer {
+  min-height: 70px;
+  color: #71808a;
+  background: var(--white);
+  font-size: 0.64rem;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding-inline: clamp(24px, 7vw, 64px);
+    background:
+      radial-gradient(circle at 100% 0, #173c5a 0, #0d2a43 19%, transparent 50%),
+      linear-gradient(145deg, var(--navy) 0%, var(--navy-deep) 100%);
+  }
+
+  .content {
+    max-width: 760px;
+  }
+}
+
+@media (max-width: 560px) {
+  .header,
+  .footer {
+    padding-inline: 20px;
+  }
+
+  .header {
+    min-height: 76px;
+  }
+
+  .availability {
+    font-size: 0.58rem;
+  }
+
+  .hero {
+    min-height: calc(100vh - 146px);
+    min-height: calc(100svh - 146px);
+    padding: clamp(48px, 9vh, 72px) 20px;
+    background:
+      radial-gradient(circle at 110% -5%, #163b59 0, #0c2941 20%, transparent 55%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+  }
+
+  .kicker {
+    margin-bottom: 19px;
+    font-size: 0.62rem;
+  }
+
+  h1 {
+    font-size: clamp(3.2rem, 17vw, 4.8rem);
+    line-height: 0.98;
+  }
+
+  .description {
+    margin: 27px 0 35px;
+    font-size: 0.95rem;
+    line-height: 1.68;
+  }
+
+  .form-control {
+    display: grid;
+    gap: 5px;
+    padding: 5px;
+  }
+
+  input[type="email"] {
+    min-height: 49px;
+    padding: 0 12px;
+  }
+
+  button {
+    min-height: 49px;
+  }
+
+  .footer span:last-child {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .availability {
+    display: none;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 18vw, 4rem);
+  }
+
+  .signup-form > label {
+    line-height: 1.5;
+  }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .header {
+    min-height: 64px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-block: 44px;
+  }
+
+  .footer {
+    min-height: 52px;
+  }
+}
+
+@media (max-height: 760px) and (min-width: 901px) {
+  .header {
+    min-height: 76px;
+  }
+
+  .hero {
+    padding-block: 48px;
+  }
+
+  .description {
+    margin: 25px 0 29px;
+  }
+
+  .footer {
+    min-height: 56px;
+  }
+}
